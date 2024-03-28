@@ -38,6 +38,7 @@ const RegisterModal = () => {
       .post("api/register", data)
       .then(() => {
         registerModal.onClose();
+        loginModal.onOpen();
       })
       .catch((error) => {
         toast.error("Something went wrong!");
@@ -48,13 +49,10 @@ const RegisterModal = () => {
       });
   };
 
-  const toggle = useCallback(
-    () => {
-      registerModal.onClose();
-      loginModal.onOpen();
-    },
-    [loginModal, registerModal],
-  )
+  const toggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -94,7 +92,7 @@ const RegisterModal = () => {
         outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => signIn('google')}
+        onClick={() => signIn("google")}
       />
       <Button
         outline
